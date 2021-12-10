@@ -10,3 +10,4 @@
 ![add](https://user-images.githubusercontent.com/78229551/145636840-f1668e86-7af8-43af-863a-fcf0b5e68d9a.jpg)
 
 4. Action "remove"
+![remove](https://user-images.githubusercontent.com/78229551/145637031-2fbc78d2-3edf-48ea-bb8b-e1b27dd16fac.jpg)
