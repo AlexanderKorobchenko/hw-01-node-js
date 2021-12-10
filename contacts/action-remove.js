@@ -15,7 +15,6 @@ async function removeContact(contactId) {
   const newContacts = contacts.filter((_, indx) => indx !== index);
 
   await fileWrite(contactsPath, newContacts);
-  console.warn(contacts[index], ' is deleted!');
   return contacts[index];
 }
 

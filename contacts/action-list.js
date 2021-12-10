@@ -3,7 +3,6 @@ const fileRead = require('./file-read.js');
 
 async function listContacts() {
   const contacts = await fileRead(contactsPath);
-  console.table(contacts);
   return contacts;
 }
 

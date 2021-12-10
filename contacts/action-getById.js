@@ -10,7 +10,6 @@ async function getContactById(contactId) {
     return null;
   }
 
-  console.log(result);
   return result;
 }
 

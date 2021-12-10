@@ -10,7 +10,6 @@ async function addContact(name, email, phone) {
   contacts.push(createNewContact);
   await fileWrite(contactsPath, contacts);
 
-  console.log(createNewContact, ' is added.');
   return createNewContact;
 }
 
