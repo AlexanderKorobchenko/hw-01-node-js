@@ -1,48 +1,52 @@
 const fs = require('fs').promises;
-const path = require('path');
 const { v4 } = require('uuid');
+const path = require('path');
 
-const contactsPath = path.join(__dirname, 'db/contacts.json');
+const contactsPath = require('./db/contacts-path.js');
+const fileRead = require('./contacts/file-read.js');
 
 async function listContacts() {
-  const data = await fs.readFile(contactsPath);
-  const contacts = JSON.parse(data);
+  const contacts = await fileRead(contactsPath);
+  console.table(contacts);
   return contacts;
 }
 
 async function getContactById(contactId) {
-  const data = await fs.readFile(contactsPath);
-  const contacts = JSON.parse(data);
+  const contacts = await fileRead(contactsPath);
   const result = contacts.find(contact => contact.id === contactId);
-  console.log(result);
+
   if (!result) {
+    console.log(`Contact with ID:"${contactId}" not found...`);
     return null;
   }
+
+  console.log(result);
   return result;
 }
 
 async function removeContact(contactId) {
-  const data = await fs.readFile(contactsPath);
-  const contacts = JSON.parse(data);
+  const contacts = await fileRead(contactsPath);
+
   const index = contacts.findIndex(contact => contact.id === contactId);
   if (index === -1) {
+    console.log(`Contact with ID:"${contactId}" not found...`);
     return null;
   }
   const newContacts = contacts.filter((_, indx) => indx !== index);
-  //write to file
-  await fs.writeFile(contactsPath, JSON.stringify(newContacts, null, 2));
+
+  await fileWrite(contactsPath, newContacts);
+  console.warn(contacts[index], ' is deleted!');
   return contacts[index];
 }
 
 async function addContact(name, email, phone) {
   const createNewContact = { id: v4(), name, email, phone };
 
-  const data = await fs.readFile(contactsPath);
-  const contacts = JSON.parse(data);
-
+  const contacts = await fileRead(contactsPath);
   contacts.push(createNewContact);
-  //write to file
-  await fs.writeFile(contactsPath, JSON.stringify(contacts, null, 2));
+
+  await fileWrite(contactsPath, contacts);
+  console.log(createNewContact, ' is added.');
   return createNewContact;
 }
 

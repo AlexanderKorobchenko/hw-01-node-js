@@ -1,7 +1,10 @@
-const action = require('./contacts');
+const actions = require('./contacts');
 
-const name = 'Lewis Chaim';
-const email = 'dui.gfdwin@egetlacus.ca';
-const phone = '295-840-6685';
+const name = 'Sim Bin';
+const email = 'dui.gdin@egelacus.com';
+const phone = '(222)-444-6677';
 
-// action.addContact(name, email, phone);
+// actions.listContacts();
+// actions.getContactById('5');
+// actions.removeContact('5');
+// actions.addContact(name, email, phone);
